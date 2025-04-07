@@ -1,0 +1,19 @@
+//THIS IS THEE SMS DELETION LOGIC
+fun handleHighRiskSms(sms: SmsMessage, context: Context, userConsent: Boolean) {
+    if (userConsent) {
+        try {
+            // Requires SMS permission in AndroidManifest.xml
+            context.contentResolver.delete(
+                Uri.parse("content://sms/${sms.id}"),
+                null,
+                null
+            )
+            Log.d("SMISHING_DETECTOR", "Deleted high-risk SMS: ${sms.body}")
+        } catch (e: SecurityException) {
+            Log.e("SMISHING_DETECTOR", "Permission denied!", e)
+        }
+    } else {
+        // Move to 'Suspicious' folder (pseudo-code)
+        moveToFolder(sms, "Suspicious")
+    }
+}
