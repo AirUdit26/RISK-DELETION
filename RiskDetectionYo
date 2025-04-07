@@ -1,0 +1,13 @@
+//here is my risk detection logic 
+fun assessRisk(sms: String): RiskLevel {
+    val highRiskKeywords = listOf("urgent", "bank", "OTP", "verify", "click")
+    val score = highRiskKeywords.count { sms.contains(it, ignoreCase = true) }
+    
+    return when {
+        score >= 3 -> RiskLevel.HIGH
+        score >= 1 -> RiskLevel.MEDIUM
+        else -> RiskLevel.LOW
+    }
+}
+
+enum class RiskLevel { HIGH, MEDIUM, LOW }
