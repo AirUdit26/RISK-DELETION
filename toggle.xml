@@ -1,0 +1,7 @@
+// FOR TOGGLE STYLING
+<Switch
+    android:id="@+id/toggleAutoDelete"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Auto-delete high-risk SMS"
+    android:checked="false" />
